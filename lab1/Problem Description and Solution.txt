@@ -1,0 +1,5 @@
+The problem involves creating a Linux Kernel Module that provides information about the current process's PCB. The aim is to display
+various attributes of the current process, such as its name, PID, PPID, state, user and group IDs. The code uses the 'seq_printf' function
+to write formatted data to the seq_file object. It fetches the current process's attributes like comm, pid, state, and cred and displays them.
+The Kernel Module successfully displays the required information about the current process. This exercise helped in understanding how to work 
+with Kernel Modules and the /proc filesystem.

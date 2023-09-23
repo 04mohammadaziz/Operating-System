@@ -1,0 +1,33 @@
+This document outlines the testing methodology and results for the Linux Kernel Module developed to display the current process's PCB information.
+
+Manual testing was performed by running the cat command as both a regular user and as root.The actual output matched the expected output for all test cases.
+The Kernel Module works as expected, displaying the correct process attributes based on the user's permissions.
+
+This section outlines the test cases executed to validate the functionality of the Linux Kernel Module designed to display the current 
+process's PCB information.
+
+Test Cases
+
+Test Case 1: lab1.out1 - Run as a regular user
+Purpose: To verify that the module correctly displays the attributes of the current process when run as a regular user.
+Command: cat /proc/lab1 > lab1.out1
+Expected Output: Display of current process attributes with user-level permissions.
+
+Test Case 2: lab1.out2 - Run as root
+Purpose: To verify that the module correctly displays the attributes of the current process when run as root.
+Command: sudo cat /proc/lab1 > lab1.out2
+Expected Output: Display of current process attributes with root-level permissions.
+
+Test Case 3: lab1_dd.out - Run using dd command
+Purpose: To verify that the module works correctly when accessed by a different command (dd in this case).
+Command: dd if=/proc/lab1 of=lab1_dd.out
+Expected Output: Display of current process attributes with user-level permissions.
+
+Completeness of Testing
+The test cases cover the following scenarios:
+
+Running the command as a regular user.
+Running the command as a root user.
+Running the command using a different utility (dd).
+
+These scenarios ensure that the module behaves as expected under different conditions and permissions. 
