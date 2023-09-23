@@ -1,4 +1,11 @@
-// Include necessary headers
+// ELEC 377 - Operating Systems
+// Mohammad Aziz - 20236155
+// Richard Bryan Concio - 20184738
+
+//=========================================
+
+// Include necessary Linux headers
+// As mentioned in the handout, the directory is under /usr/src/linux-headers-5.4.0-162-generic/include/linux
 #include <linux/version.h>
 #include <linux/module.h>
 #include <linux/kernel.h>
@@ -37,11 +44,12 @@ static int lab1_show(struct seq_file *m, void *v) {
       seq_printf(m, "Stopped\n");
       break;
     default:
-      seq_printf(m, "Unknown\n");
+      seq_printf(m, "Unknown\n"); // Unknown state included as a default
       break;
   }
 
   // Print UID and GID information
+  // Referencing the struct 'cred' object and accessing the 'val' field of each respective member
   seq_printf(m, "Real UID = %d\n", cred->uid.val);
   seq_printf(m, "Effective UID = %d\n", cred->euid.val);
   seq_printf(m, "Saved UID = %d\n", cred->suid.val);

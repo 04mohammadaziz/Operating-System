@@ -1,6 +1,12 @@
+ELEC 377 - Operating Systems
+Mohammad Aziz - 20236155
+Richard Bryan Concio - 20184738
+
+=========================================
+
 This document outlines the testing methodology and results for the Linux Kernel Module developed to display the current process's PCB information.
 
-Manual testing was performed by running the cat command as both a regular user and as root.The actual output matched the expected output for all test cases.
+Manual testing was performed by running the cat command as both a regular user and as root. The actual output matched the expected output for all test cases.
 The Kernel Module works as expected, displaying the correct process attributes based on the user's permissions.
 
 This section outlines the test cases executed to validate the functionality of the Linux Kernel Module designed to display the current 
