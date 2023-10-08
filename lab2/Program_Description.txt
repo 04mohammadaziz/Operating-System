@@ -1,0 +1,11 @@
+Our program is a simple shell implemented in C that can execute a subset of shell commands. The shell is capable of parsing and executing both internal and external commands. 
+It provides support for basic shell functionalities like changing directories with 'cd', listing files with 'ls', displaying the current directory using 'pwd', and exiting the shell with 'exit'.
+
+The program starts by reading commands from the standard input. It then uses a function called splitCommandLine to parse these commands into their main command and arguments. 
+Once parsed, the function doInternalCommand checks if the command is one of the shell's internal commands. If it is, the function executes the command directly.
+
+For commands that are not internal, another function called doProgram takes over. This function looks for external programs in predefined paths and executes them using system calls.
+
+One of the special features of C that we used in this program is function pointers. We used function pointers to map internal commands to their corresponding handling functions. 
+This makes the program easily extendable for more features in the future. We also used dynamic memory allocation with 'malloc' to construct the full paths of external commands dynamically. 
+System calls like 'fork', 'execv', 'wait', and 'stat' are also used for process creation, execution, and to check file attributes. We used structs for holding information about directory listings and file attributes.
