@@ -1,0 +1,33 @@
+Script started on 2023-10-08 13:23:48-04:00 [TERM="xterm-256color" TTY="/dev/pts/5" COLUMNS="208" LINES="9"]
+]0;20maa2@elec377-tues-pm-60: ~/elec377-tues-pm-60/lab2[01;32m20maa2@elec377-tues-pm-60[00m:[01;34m~/elec377-tues-pm-60/lab2[00m$ exit./myshellgcc -o myshell shell.c
+]0;20maa2@elec377-tues-pm-60: ~/elec377-tues-pm-60/lab2[01;32m20maa2@elec377-tues-pm-60[00m:[01;34m~/elec377-tues-pm-60/lab2[00m$ gcc -o myshell shell.cexit[K./myshell
+%> ls
+hello
+shell
+shell.c
+Makefile
+..
+myshell
+Program_Description.txt
+hello.c
+test1.txt
+.
+%> cd /home/20maa2/elec377-tues-pm-60/lab2
+%> pwd
+/home/20maa2/elec377-tues-pm-60/lab2
+%> ./hello
+Checking path: ./hello
+Hello 20maa2
+%> /usr/bin/ls
+Checking path: ./ls
+Checking path: /usr/bin/ls
+Makefile  Program_Description.txt  hello  hello.c  myshell  shell  shell.c  test1.txt
+%> this_is_not_a_command
+Checking path: ./this_is_not_a_command
+Checking path: /usr/bin/this_is_not_a_command
+Command not found.
+%> 3e  exit
+]0;20maa2@elec377-tues-pm-60: ~/elec377-tues-pm-60/lab2[01;32m20maa2@elec377-tues-pm-60[00m:[01;34m~/elec377-tues-pm-60/lab2[00m$ exit
+exit
+
+Script done on 2023-10-08 13:25:01-04:00 [COMMAND_EXIT_CODE="0"]
