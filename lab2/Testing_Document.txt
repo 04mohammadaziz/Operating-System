@@ -1,0 +1,23 @@
+To capture a detailed record of all interactions with this custom shell, the script command has been employed. The output of this command is stored in a file named test1.txt.
+
+For the first test, we executed the ls command. The expectation was to see a list of files and directories present in the current directory. 
+The shell produced the expected output, listing files like hello, shell, shell.c, and Makefile. Therefore, this test passed successfully.
+
+The second test involved using the cd command to change to the directory /home/20maa2/. 
+The shell successfully navigated to the specified directory without producing any output, which was the expected behavior. Hence, this test also passed.
+
+The third test was to print the current working directory using the pwd command. 
+The shell successfully displayed /home/20maa2/elec377-tues-pm-60/lab2, which was the current directory. The test was successful.
+
+The fourth test ran a local program named hello by executing ./hello. The expected output was "Hello 20maa2", and the shell did produce this exact output. 
+Therefore, the test was successful.
+
+For the fifth test, we ran the ls command by specifying its full path, /usr/bin/ls. 
+The shell executed the command successfully and listed the files and directories in the current directory, including Makefile, Program_Description.txt, hello, and so on. 
+This test confirmed that the shell can handle commands with their full path, and thus it was successful.
+
+The last test involved running an invalid command, this_is_not_a_command. The shell appropriately responded with "Command not found," which was the expected output. 
+This test confirmed that the shell handles invalid commands gracefully and was therefore successful.
+
+In conclusion, all the tests produced the expected outcomes, validating that the custom shell is functioning correctly. 
+The script command captured all these interactions, and the logs are stored in test1.txt.
