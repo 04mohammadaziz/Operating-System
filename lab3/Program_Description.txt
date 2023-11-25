@@ -1,0 +1,28 @@
+The purpose of this program is to implement a multi-producer, multi-consumer problem 
+using the C programming language. The program is structured around three primary 
+components: producer threads, consumer threads, and a shared buffer.
+
+1. Producer Threads: The producer threads are responsible for reading data from separate 
+input files named t10.dat, t11.dat, and t12.dat. Upon reading the data, each 
+producer thread obtains a lock to ensure exclusive access to the shared buffer. It then 
+places the read data into the buffer. After placing the data, the producer thread signals the 
+consumer threads that the buffer now contains data and is not empty. Finally, the producer 
+thread releases the lock to allow other threads to access the buffer.
+
+2. Consumer Threads: The consumer threads wait until the shared buffer has data to 
+consume. Once the buffer is not empty, a consumer thread obtains a lock to access the 
+shared buffer exclusively. It then reads the data from the buffer and writes it to separate 
+output files named out10.dat, out11.dat, and out12.dat. After consuming the 
+data, the consumer thread signals the producer threads, indicating that the buffer has 
+space for more data. The consumer thread then releases the lock.
+
+3. Shared Buffer: The shared buffer serves as a temporary storage area for the data. It has a
+fixed size and can be accessed by both producer and consumer threads.
+
+In terms of the special features of the C language used in solving this problem, we employed 
+the pthread library for creating and managing threads. We also used mutex locks to 
+ensure mutual exclusion when accessing the shared buffer. Additionally, we used condition 
+variables to signal and wait for certain conditions, such as the buffer being empty or full, to 
+be met.
+
+

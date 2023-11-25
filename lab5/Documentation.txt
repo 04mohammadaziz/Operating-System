@@ -1,0 +1,107 @@
+Code Documentation
+
+File Name: selfcomp.c
+
+Objectives: To develop and test a buffer overflow exploit in a controlled environment. This file 
+targets itself to understand how the exploit works.
+
+Code Description: This file contains a function doTest that is vulnerable to buffer overflow. The 
+compromise array stores the shellcode and NOP sled, designed to exploit this vulnerability. The 
+string compromise1 is used to probe the stack and find the correct values for the shellcode. The 
+program sets an environment variable and calls doTest to trigger the overflow.
+
+#------------------------------------------------------------------------------------------------
+
+File Name: exploit.nasm/exploit.lst
+
+Objectives: To create assembly code for exploiting the buffer overflow vulnerability.
+
+Code Description: This NASM file contains the assembly instructions to perform a buffer overflow 
+attack. The shellcode locates the execution point using a jump and pop technique, clears 
+registers, and sets up a syscall to execute a command. The command executed is 
+printenv;exit, used to print environment variables. exploit.lst provides a line-by-line 
+breakdown of the NASM file.
+
+#-------------------------------------------------------------------------------------------------
+
+File Name: client.c
+
+Objectives: To connect to a server and perform a buffer overflow attack, retrieving environment 
+variables.
+
+Code Description: This file initiates a connection to a server on a specified port and sends the 
+exploit code, compromise, over this connection. The DoAttack function manages 
+the connection and the attack process. The shellcode in compromise is designed to cause a buffer 
+overflow on the server and spill environment variables, including the MD5 hash.
+
+In the compromise of the server, the length of the string compromise1 used to trigger the buffer 
+overflow was carefully calibrated. This string is composed of a series of 'x' characters, followed by 
+the marker "MNOPWXYZ", and more 'x' characters, with a newline character at the end. The total 
+length of this string plays a role in ensuring the buffer overflow occurs precisely at the 
+desired location in memory.
+
+The string is structured as follows:
+
+- 10 lines each with 20 'x' characters: 10 × 20 = 200 characters
+- 1 line with 8 'x' characters
+- "MNOPWXYZ" marker: 8 characters
+- 1 line with 8 'x' characters
+- A newline character: 1 character
+
+This brings the total length of the string to 200 + 8 + 8 + 8 + 1 = 225 characters
+
+The attack mechanism involves this string overwriting the buffer and the return address on the 
+stack. The placement of "MNOPWXYZ" is strategic, as it helps to identify where the overwritten
+return address begins in the memory. By manipulating the contents of the buffer and the return 
+address, the execution flow of the program is diverted to the shellcode, which is executed 
+instead of the original function return. This exploitation of the buffer overflow vulnerability allows 
+for unauthorized actions to be performed, such as gaining access to protected areas of the server.
+
+In conducting the server's buffer overflow attack, accurately determining the stack's return 
+address was important. This process involved calculating the address using the stack pointer's 
+(rsp) value and the length of the string, compromise1.
+
+The calculation involved subtracting 0xD8, the length of compromise1, from the rsp 
+value 0x7FFFFFFFDF88, resulting in the address 0x7FFFFFFFDEB0. This computed address was 
+crucial for the exploit, as it replaced the stack's original return address. Consequently, this 
+alteration redirected the program's execution to the shellcode within the compromise array.
+
+#--------------------------------------------------------------------------------------------------
+
+CRACKING THE PASSWORD
+
+The MD5 hash 6f7daafde41f65482b56e36f5f2c2f89 was cracked to reveal the password 
+"Purple1997". This was achieved by using a combination of guesswork and hashing tools. The 
+password was generated based on personal information clues from social media posts, as 
+described in the lab instructions. The correct password matched the given MD5 hash when 
+processed through an MD5 hash generator.
+
+The process involved creating a list of possible passwords based on the given clues and hashing 
+each one to compare with the MD5 hash from the server's environment variables. Once 
+"Purple1997" was identified as the matching password, it confirmed the successful execution of 
+the buffer overflow exploit and the effectiveness of the shellcode in extracting sensitive 
+information.
+
+List of Seed Words
+Jack
+Teller
+Ruckus
+Elantra
+Smitty
+Modesto
+Kate
+Susan
+Water
+Purple
+
+List of Seed Numbers
+24
+2020
+15
+9
+18
+3
+1997
+
+Password Jack Teller Uses In the server
+Password: Purple1997

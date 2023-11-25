@@ -1,0 +1,33 @@
+Testing Document
+
+Objective: This document outlines the approach and results for testing the ps.sh script, which displays processes with their respective PID, USER, GROUP, and COMMAND information, drawing from the /proc file system.
+
+Test Scenarios:
+
+Test Case: Default Execution
+
+Command: ./ps.sh
+Purpose: To verify that the script lists all running processes with their PID and COMMAND information by default.
+Expected Output: A list similar to the output of ps -eo pid,comm, but with potential differences due to how the command names are truncated in the script.
+Results: The script's output was compared to the output of the system ps command.
+Comparison:
+COMMAND Field Content: The script's output truncates the command if it exceeds 50 characters and appends an ellipsis. The system ps command shows the full command without truncation.
+Test Case: Group and RSS Flags
+
+Command: ./ps.sh -group -rss
+Purpose: To test the script's ability to display the GROUP and RSS (Resident Set Size) of processes.
+Expected Output: A list showing PID, GROUP, and RSS of running processes.
+Results: The script correctly displayed the GROUP and RSS for each process.
+Comparison: Compared with the manual inspection of /proc/[PID]/status files, the script's output was accurate.
+Test Case: Mutually Exclusive Flags
+
+Command: ./ps.sh -comm -command
+Purpose: To verify that the script handles mutually exclusive flags correctly.
+Expected Output: An error message indicating that -comm and -command cannot both be specified.
+Results: The script correctly identified the mutually exclusive flags and displayed an appropriate error message.
+Test Case: Invalid Flag
+
+Command: ./ps.sh -invalid
+Purpose: To test the script's error handling for unrecognized flags.
+Expected Output: An error message indicating that the flag is unknown.
+Results: The script correctly displayed an error message for the unrecognized flag.

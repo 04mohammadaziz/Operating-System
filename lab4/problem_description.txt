@@ -1,0 +1,13 @@
+Problem Statement:
+The requirement is to create a script that lists the processes running on a Linux system,
+similar to the 'ps' command, but with the ability to format and display additional process-
+related information using the '/proc' filesystem.
+
+Solution Description:
+Our script, named ps.sh, reads directly from the /proc directory, which contains
+detailed information about all currently running processes. It extracts the process ID, user
+and group ownership, and command information for each process. The script also supports
+additional command-line arguments to control the output, such as -rss for showing
+resident set size, -comm for the command name, and -command for the full command line
+used to start the process. It also has an option -group to display the group information. 
+The script formats the output in a tabulated form for easy reading.

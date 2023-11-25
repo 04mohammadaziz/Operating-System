@@ -1,0 +1,89 @@
+The testing of the program is based on both the input provided and the output generated. 
+For the input, the program takes three command-line arguments, which are the number of
+tests to run, the number of producer threads, and the number of consumer threads. It also 
+reads from three separate input files (t10.dat, t11.dat, t12.dat), each containing 
+numbers that the producer threads will place into the shared buffer.
+
+For the output, the program generates data in three separate output files (out10.dat,
+out11.dat, out12.dat). These files contain the numbers that have been consumed by 
+the consumer threads from the shared buffer.
+
+To validate the correct functioning of the program, we looked at several factors:
+
+1. The program logs confirm that the correct number of producer and consumer threads are 
+created and run according to the command-line arguments provided.
+
+2. The program logs also confirm that mutex locks are acquired and released as expected, 
+and that threads signal each other correctly to indicate whether the buffer is empty or full.
+
+3. Finally, by comparing the numbers in the output files to those in the input files, we can 
+confirm that the producer-consumer model is working as intended.
+
+### Test Case: ./my_program 1 1 1
+
+For this test case, we run the program with 1 test, 1 producer thread, and 1 consumer thread. The producer thread reads from the input file t10.dat, and the consumer thread writes to the output file out10.dat.
+
+#### Observations:
+
+- **Thread Allocation**: The logs confirm that 1 producer thread and 1 consumer thread were created and started. The producer thread reads from t10.dat, and the consumer thread writes to out10.dat.
+  
+- **Mutex Locks and Signaling**: The logs are consistent with the expected behavior for mutex locks and signaling between threads. Both the producer and consumer threads acquire and release locks as they should, and they also signal each other appropriately to indicate whether the buffer is empty or full.
+
+- **Data Integrity**: The output file out10.dat contains numbers from 10 to 180, which aligns with the input file t10.dat. Specifically, numbers like 110 and 130 appear in both the input and output files, confirming that the data has been correctly transferred.
+  
+- **Thread Coordination**: The logs show a smooth handoff between the producer and consumer threads. For example, the producer thread adds the number 110 at position 1 in the buffer and signals that the buffer is not empty. The consumer thread then pulls the same number from position 0 in the buffer, confirming that the producer-consumer model is working as intended.
+
+By these observations, we can conclude that the program is working as expected for this test case.
+
+### Test Case: ./my_program 1 1 3
+
+For this test case, the program is run with 1 test, 1 producer thread, and 3 consumer threads. The producer thread reads from the input file t10.dat, and the consumer threads write to output files out10.dat, out11.dat, and out12.dat.
+
+#### Observations:
+
+- **Thread Allocation**: The logs confirm that 1 producer thread and 3 consumer threads were created and started. The producer thread reads from t10.dat, and the consumer threads write to out10.dat, out11.dat, and out12.dat.
+
+- **Mutex Locks and Signaling**: The logs indicate that mutex locks are correctly acquired and released. Additionally, the threads signal each other to indicate whether the buffer is empty or full.
+
+- **Data Integrity**: The output files out10.dat, out11.dat, and out12.dat contain specific numbers that align with the input file t10.dat. For example, the number 130 is read by the producer thread from t10.dat and appears in the output file out12.dat, confirming the correct data transfer.
+
+- **Thread Coordination**: The logs demonstrate that the threads are coordinating well. For instance, the producer thread adds the number 130 at position 0, and consumer thread 2 pulls this number, showing that the data is correctly moving from producer to consumer.
+
+By these observations, we can conclude that the program is working as expected for this test case.
+
+### Test Case: ./my_program 1 3 1 
+
+For this test case, the program is run with 1 test, 3 producer threads, and 1 consumer thread. The producer threads read from the input files `t10.dat`, `t11.dat`, and `t12.dat`, and the consumer thread writes to the output file `out10.dat`.
+
+#### Observations:
+
+- **Thread Allocation**: The logs confirm that 3 producer threads and 1 consumer thread were created and started. The producer threads read from `t10.dat`, `t11.dat`, and `t12.dat`, and the consumer thread writes to `out10.dat`.
+
+- **Mutex Locks and Signaling**: The logs indicate that mutex locks are correctly acquired and released by both producers and the consumer. Additionally, the threads signal each other to indicate whether the buffer is empty or full.
+
+- **Data Integrity**: The numbers consumed by the consumer thread align with the numbers read by the producer threads from `t10.dat`, `t11.dat`, and `t12.dat`. For example, the number 130 is read by producer thread 0 from `t10.dat` and appears to be consumed by the consumer, confirming correct data transfer.
+
+- **Thread Coordination**: The logs show effective coordination between the threads. For instance, producer thread 2 adds the number 96 at position 0, and the consumer thread pulls this number, indicating that data is correctly moving from producer to consumer.
+
+By these observations, we can conclude that the program is working as expected for this test case.
+
+### Test Case: ./my_program 1 3 3
+
+For this test case, the program is run with 1 test, 3 producer threads, and 3 consumer threads. The producer threads read from the input files `t10.dat`, `t11.dat`, and `t12.dat`, and the consumer threads write to the output files `out10.dat`, `out11.dat`, and `out12.dat`.
+
+#### Observations:
+
+- **Thread Allocation**: The logs confirm that 3 producer threads and 3 consumer threads were created and started. The producer threads read from `t10.dat`, `t11.dat`, and `t12.dat`, and the consumer threads write to `out10.dat`, `out11.dat`, and `out12.dat`.
+
+- **Mutex Locks and Signaling**: The logs indicate that mutex locks are correctly acquired and released by both producers and consumers. Additionally, the threads signal each other to indicate whether the buffer is empty or full.
+
+- **Data Integrity**: The numbers consumed by the consumer threads align with the numbers read by the producer threads from their respective input files (`t10.dat`, `t11.dat`, `t12.dat`). For instance, the number 133 is read by producer thread 1 from `t11.dat` and appears to be consumed by consumer thread 1, confirming correct data transfer.
+
+- **Thread Coordination**: The logs show effective coordination between the threads. For example, producer thread 2 adds the number 16 at position 0, and consumer thread 1 pulls this number, indicating that data is correctly moving from producer to consumer.
+
+By these observations, we can conclude that the program is working as expected for this test case.
+
+
+
+
+
